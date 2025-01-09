@@ -73,18 +73,7 @@ jobs:
         echo "Web connection: $(tmate -S /tmp/tmate.sock display -p '#{tmate_web}')"
         echo "Step complete. Type 'continue' to proceed..."
 
-    # 创建一个标志文件，用于暂停工作流
-    - name: Create pause flag file
-      run: |
-        echo "pause" > pause.flag
-    # 检查标志文件并等待直到修改为 'continue' 才继续执行
-    - name: Wait for flag to continue
-      run: |
-        while [ "$(cat pause.flag)" != "continue" ]; do
-          echo "Waiting for 'continue' command..."
-          sleep 10
-        done
-        echo "Proceeding with workflow..."
+
 
 
     - name: Load Settings.ini
@@ -134,18 +123,7 @@ jobs:
         [ "$VERSION" ] && echo "VERSION=$VERSION" >> $GITHUB_ENV || echo "VERSION=$(date +'%m.%d')" >> $GITHUB_ENV
 
 
-    # 创建一个标志文件，用于暂停工作流
-    - name: Create pause flag file
-      run: |
-        echo "pause" > pause.flag
-    # 检查标志文件并等待直到修改为 'continue' 才继续执行
-    - name: Wait for flag to continue
-      run: |
-        while [ "$(cat pause.flag)" != "continue" ]; do
-          echo "Waiting for 'continue' command..."
-          sleep 10
-        done
-        echo "Proceeding with workflow..."
+
 
 
     - name: Clone source code
