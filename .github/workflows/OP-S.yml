@@ -77,7 +77,6 @@ jobs:
     - name: Create pause flag file
       run: |
         echo "pause" > pause.flag
-
     # 检查标志文件并等待直到修改为 'continue' 才继续执行
     - name: Wait for flag to continue
       run: |
@@ -135,6 +134,10 @@ jobs:
         [ "$VERSION" ] && echo "VERSION=$VERSION" >> $GITHUB_ENV || echo "VERSION=$(date +'%m.%d')" >> $GITHUB_ENV
 
 
+    # 创建一个标志文件，用于暂停工作流
+    - name: Create pause flag file
+      run: |
+        echo "pause" > pause.flag
     # 检查标志文件并等待直到修改为 'continue' 才继续执行
     - name: Wait for flag to continue
       run: |
@@ -171,6 +174,10 @@ jobs:
         cat openwrt/tbx.tag
 
 
+    # 创建一个标志文件，用于暂停工作流
+    - name: Create pause flag file
+      run: |
+        echo "pause" > pause.flag
     # 检查标志文件并等待直到修改为 'continue' 才继续执行
     - name: Wait for flag to continue
       run: |
@@ -190,6 +197,21 @@ jobs:
         chmod +x devices/common/$DIY_SH
         echo "1Running script: $(realpath devices/common/$DIY_SH)"
         /bin/bash "devices/common/$DIY_SH"
+
+
+    # 创建一个标志文件，用于暂停工作流
+    - name: Create pause flag file
+      run: |
+        echo "pause" > pause.flag
+    # 检查标志文件并等待直到修改为 'continue' 才继续执行
+    - name: Wait for flag to continue
+      run: |
+        while [ "$(cat pause.flag)" != "continue" ]; do
+          echo "Waiting for 'continue' command..."
+          sleep 10
+        done
+        echo "Proceeding with workflow..."
+        
         
     - name: Load custom configuration, ipq diy
       run: |
