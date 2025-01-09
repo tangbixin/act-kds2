@@ -61,7 +61,7 @@ jobs:
         workflow_id: 4439867
 
 
-  # 添加 SSH 调试功能
+  # 添加 SSH 调试功能 echo "continue" > pause.flag
     - name: Enable SSH (tmate) for debugging
       if: ${{ github.event.inputs.ssh == 'true' }}
       run: |
@@ -134,6 +134,17 @@ jobs:
         VERSION="$(echo "${{github.event.action}}" | grep -Eo " [0-9.]+" | sed -e 's/ //')" || true
         [ "$VERSION" ] && echo "VERSION=$VERSION" >> $GITHUB_ENV || echo "VERSION=$(date +'%m.%d')" >> $GITHUB_ENV
 
+
+    # 检查标志文件并等待直到修改为 'continue' 才继续执行
+    - name: Wait for flag to continue
+      run: |
+        while [ "$(cat pause.flag)" != "continue" ]; do
+          echo "Waiting for 'continue' command..."
+          sleep 10
+        done
+        echo "Proceeding with workflow..."
+
+
     - name: Clone source code
       working-directory: /workdir
       run: |
@@ -160,6 +171,14 @@ jobs:
         cat openwrt/tbx.tag
 
 
+    # 检查标志文件并等待直到修改为 'continue' 才继续执行
+    - name: Wait for flag to continue
+      run: |
+        while [ "$(cat pause.flag)" != "continue" ]; do
+          echo "Waiting for 'continue' command..."
+          sleep 10
+        done
+        echo "Proceeding with workflow..."
 
 
     - name: Load custom configuration, common diy
