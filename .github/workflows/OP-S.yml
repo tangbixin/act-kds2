@@ -61,7 +61,7 @@ jobs:
         workflow_id: 4439867
 
 
-    # 添加 SSH 调试功能
+  # 添加 SSH 调试功能
     - name: Enable SSH (tmate) for debugging
       if: ${{ github.event.inputs.ssh == 'true' }}
       run: |
@@ -73,15 +73,19 @@ jobs:
         echo "Web connection: $(tmate -S /tmp/tmate.sock display -p '#{tmate_web}')"
         echo "Step complete. Type 'continue' to proceed..."
 
-    # 在这里模拟暂停，等待你输入"continue"来继续执行
-    - name: Wait for user to type 'continue' to proceed
+    # 创建一个标志文件，用于暂停工作流
+    - name: Create pause flag file
       run: |
-        while true; do
-          read -p "Enter 'continue' to proceed: " input
-          if [[ "$input" == "continue" ]]; then
-            break
-          fi
+        echo "pause" > pause.flag
+
+    # 检查标志文件并等待直到修改为 'continue' 才继续执行
+    - name: Wait for flag to continue
+      run: |
+        while [ "$(cat pause.flag)" != "continue" ]; do
+          echo "Waiting for 'continue' command..."
+          sleep 10
         done
+        echo "Proceeding with workflow..."
 
 
     - name: Load Settings.ini
