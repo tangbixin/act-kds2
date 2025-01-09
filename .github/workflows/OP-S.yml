@@ -71,19 +71,21 @@ jobs:
         tmate -S /tmp/tmate.sock wait tmate-ready
         echo "SSH connection: $(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}')"
         echo "Web connection: $(tmate -S /tmp/tmate.sock display -p '#{tmate_web}')"
-        
-        # 在后台运行暂停命令，允许你进行其他操作
         echo "Step complete. Type 'continue' to proceed..."
-        nohup bash -c 'while true; do read input; if [[ $input == "continue" ]]; then break; fi; done' &
 
-
+    # 在这里模拟暂停，等待你输入"continue"来继续执行
+    - name: Wait for user to type 'continue' to proceed
+      run: |
+        while true; do
+          read -p "Enter 'continue' to proceed: " input
+          if [[ "$input" == "continue" ]]; then
+            break
+          fi
+        done
 
 
     - name: Load Settings.ini
       run: |
-        echo "Waiting for 'continue' command..."
-        wait $!
-
 
       
         source "${GITHUB_WORKSPACE}/devices/common/settings.ini"
