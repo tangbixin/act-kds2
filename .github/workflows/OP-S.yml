@@ -127,7 +127,6 @@ jobs:
     - name: Clone source code
       working-directory: /workdir
       run: |
-      
         echo $REPO_URL
         echo $REPO_BRANCH
         #REPO_BRANCH="$((curl -gs -H 'Content-Type: application/json' \
@@ -150,21 +149,10 @@ jobs:
         cat openwrt/tbx.tag
 
 
-    # 创建一个标志文件，用于暂停工作流
-    - name: 1 Create pause flag file
-      run: |
-        echo "pause" > pause.flag
-    # 检查标志文件并等待直到修改为 'continue' 才继续执行
-    - name: Wait for flag to continue
-      run: |
-        while [ "$(cat pause.flag)" != "continue" ]; do
-          echo "Waiting for 'continue' command..."
-          sleep 10
-        done
-        echo "Proceeding with workflow..."
 
 
-    - name: Load custom configuration, common diy
+
+    - name: Load custom configuration, common-diy.sh
       run: |
         cp -rf devices/common/. openwrt/
         cp -rf devices/$MATRIX_TARGET/. openwrt/
@@ -176,7 +164,7 @@ jobs:
 
 
     # 创建一个标志文件，用于暂停工作流
-    - name: Create pause flag file
+    - name: 2 Create pause flag file
       run: |
         echo "pause" > pause.flag
     # 检查标志文件并等待直到修改为 'continue' 才继续执行
@@ -189,7 +177,7 @@ jobs:
         echo "Proceeding with workflow..."
         
         
-    - name: Load custom configuration, ipq diy
+    - name: Load custom configuration, ipq807x-diy.sh
       run: |
         cd openwrt
         if [ -f "devices/$MATRIX_TARGET/$DIY_SH" ]; then
@@ -216,7 +204,24 @@ jobs:
         echo '-----------config2-----------'
 
 
-    - name: Load custom config bixyn1
+
+
+    # 创建一个标志文件，用于暂停工作流
+    - name: 3 Create pause flag file
+      run: |
+        echo "pause" > pause.flag
+    # 检查标志文件并等待直到修改为 'continue' 才继续执行
+    - name: Wait for flag to continue
+      run: |
+        while [ "$(cat pause.flag)" != "continue" ]; do
+          echo "Waiting for 'continue' command..."
+          sleep 10
+        done
+        echo "Proceeding with workflow..."
+
+
+
+    - name: Load custom config common-diy1
       run: |
         cd openwrt
         chmod +x devices/common/$DIY1_SH
