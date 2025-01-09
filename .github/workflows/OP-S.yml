@@ -77,9 +77,7 @@ jobs:
 
 
     - name: Load Settings.ini
-      run: |
-
-      
+      run: |    
         source "${GITHUB_WORKSPACE}/devices/common/settings.ini"
         if [ -f "devices/$MATRIX_TARGET/settings.ini" ]; then
           source "${GITHUB_WORKSPACE}/devices/$MATRIX_TARGET/settings.ini"
@@ -153,7 +151,7 @@ jobs:
 
 
     # 创建一个标志文件，用于暂停工作流
-    - name: Create pause flag file
+    - name: 1 Create pause flag file
       run: |
         echo "pause" > pause.flag
     # 检查标志文件并等待直到修改为 'continue' 才继续执行
