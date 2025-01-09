@@ -61,6 +61,21 @@ jobs:
         workflow_id: 4439867
 
 
+# 添加 SSH 调试功能
+    - name: Enable SSH (tmate) for debugging
+      if: ${{ github.event.inputs.ssh == 'true' }}  # 只有当用户选择 'ssh: true' 时才启用
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y tmate
+        tmate -S /tmp/tmate.sock new-session -d
+        tmate -S /tmp/tmate.sock wait tmate-ready
+        echo "SSH connection: $(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}')"
+        echo "Web connection: $(tmate -S /tmp/tmate.sock display -p '#{tmate_web}')"
+        sleep infinity  # 保持会话活跃
+
+
+
+
     - name: Load Settings.ini
       run: |
         source "${GITHUB_WORKSPACE}/devices/common/settings.ini"
