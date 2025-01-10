@@ -6,7 +6,7 @@ echo "强制克隆kiddin9.............................."
 rm -rf feeds/kiddin9
 git clone -b master https://github.com/kiddin9/openwrt.git feeds/kiddin9
 
-# sed -i "s/10.0.0/192.168.31/" package/feeds/kiddin9/base-files/files/bin/config_generate
+sed -i "s/10.0.0/192.168.31/" package/feeds/kiddin9/base-files/files/bin/config_generate
 
 pwd
 ls -l
