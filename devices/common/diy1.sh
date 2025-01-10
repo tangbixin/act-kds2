@@ -5,7 +5,7 @@ echo "强制克隆kiddin9.............................."
 
 rm -rf feeds/kiddin9
 git clone -b master https://github.com/kiddin9/openwrt.git feeds/kiddin9
-
+echo "修改ip地址为31网段.............................."
 sed -i "s/10.0.0/192.168.31/" package/feeds/kiddin9/base-files/files/bin/config_generate
 
 pwd
