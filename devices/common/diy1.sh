@@ -1,32 +1,31 @@
 #!/bin/bash
 #=================================================
 echo "bixyn diy1.sh.............................."
-sed -i "s/10.0.0/192.168.31/" package/feeds/kiddin9/base-files/files/bin/config_generate
-# cat feeds/kiddin9/base-files/files/etc/openwrt_release
-# sed -i 's/'"'"/'/g' feeds/kiddin9/base-files/files/etc/openwrt_release
+# sed -i "s/10.0.0/192.168.31/" package/feeds/kiddin9/base-files/files/bin/config_generate
+
 pwd
 ls -l
-cat feeds/kiddin9/base-files/files/etc/openwrt_release
+# cat feeds/kiddin9/base-files/files/etc/openwrt_release
 echo 'tbx tag......................'
 TAG=`cat tbx.tag`
 echo $TAG
-sed -i 's/by Kiddin/'$TAG' by tangbixin/g' feeds/kiddin9/base-files/files/etc/openwrt_release
-echo "---openwrt_release----------------"
-cat feeds/kiddin9/base-files/files/etc/openwrt_release
-echo "--edit links.htm-----------------"
-sed -i 's/"https:\/\/supes.top\/"/"https:\/\/www.google.com\/"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/"https:\/\/supes.top\/fadian\/"/"https:\/\/www.baidu.com\/"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/"https:\/\/t.me\/opwrt"/"https:\/\/www.youtube.com\/"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/"https:\/\/github.com\/kiddin9\/OpenWrt_x86-r2s-r4s"/"https:\/\/github.com\/tangbixin\/act-kd"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/固件下载与定制/谷歌/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/赞助/百度/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/TG频道/油管/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/与反馈//' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-sed -i 's/ style="color:orangered"//' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
-cat feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/by Kiddin/'$TAG' by tangbixin/g' feeds/kiddin9/base-files/files/etc/openwrt_release
+# echo "---openwrt_release----------------"
+# cat feeds/kiddin9/base-files/files/etc/openwrt_release
+# echo "--edit links.htm-----------------"
+# sed -i 's/"https:\/\/supes.top\/"/"https:\/\/www.google.com\/"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/"https:\/\/supes.top\/fadian\/"/"https:\/\/www.baidu.com\/"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/"https:\/\/t.me\/opwrt"/"https:\/\/www.youtube.com\/"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/"https:\/\/github.com\/kiddin9\/OpenWrt_x86-r2s-r4s"/"https:\/\/github.com\/tangbixin\/act-kd"/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/固件下载与定制/谷歌/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/赞助/百度/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/TG频道/油管/' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/与反馈//' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# sed -i 's/ style="color:orangered"//' feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# cat feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
 
-echo '-----清空links.htm----------------'
-echo ''>feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
+# echo '-----清空links.htm----------------'
+# echo ''>feeds/kiddin9/my-default-settings/files/usr/lib/lua/luci/view/admin_status/index/links.htm
 
 
 
