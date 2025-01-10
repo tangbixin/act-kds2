@@ -164,7 +164,7 @@ jobs:
 
 
     # 创建一个标志文件，用于暂停工作流
-    - name: 1 暂停，common-diy.sh执行完毕
+    - name: ==================1 暂停，common-diy.sh执行完毕
       run: |
         pwd
         echo "pause" > pause.flag
@@ -173,7 +173,7 @@ jobs:
       run: |
         while [ "$(cat pause.flag)" != "continue" ]; do
           echo "Waiting for 'continue' command..."
-          sleep 10
+          sleep 20
         done
         echo "Proceeding with workflow..."
         
@@ -207,7 +207,7 @@ jobs:
 
 
     # 创建一个标志文件，用于暂停工作流
-    - name: 2 暂停，ipq807x-diy.sh执行完毕
+    - name: =================2 暂停，ipq807x-diy.sh执行完毕
       run: |
         pwd
         echo "pause" > pause.flag
@@ -216,7 +216,7 @@ jobs:
       run: |
         while [ "$(cat pause.flag)" != "continue" ]; do
           echo "Waiting for 'continue' command..."
-          sleep 10
+          sleep 20
         done
         echo "Proceeding with workflow..."
         
