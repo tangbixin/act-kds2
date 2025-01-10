@@ -231,12 +231,12 @@ jobs:
         echo "Running script: $(realpath devices/common/$DIY1_SH)"
         /bin/bash "devices/common/$DIY1_SH"
         
-        echo "bixyn replace opkg-call"
-        ls -l feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
-        rm -f feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
-        cp  devices/common/opkg-call feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
-        chmod +x feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
-        ls -l feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
+        # echo "bixyn replace opkg-call"
+        # ls -l feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
+        # rm -f feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
+        # cp  devices/common/opkg-call feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
+        # chmod +x feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
+        # ls -l feeds/kiddin9/luci-app-opkg/root/usr/libexec/opkg-call
 
 
     - name: Apply patches
