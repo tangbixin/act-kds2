@@ -124,7 +124,7 @@ jobs:
 
 
 
-    - name: Clone source code
+    - name: 下载openwrt官方源码
       working-directory: /workdir
       run: |
         echo $REPO_URL
